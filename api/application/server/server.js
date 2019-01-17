@@ -24,17 +24,16 @@ class Server {
       middlewares.forEach((middleware) => {
         app.use(middleware);
       });
-      app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      app.use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+        res.header('Access-Control-Allow-Headers', 'Content-Type');
         next();
       });
       app.use(`${apiPrefixUrl}`, PublicRoute.router);
       app.use(`${apiPrefixUrl}/auth`, AuthRoute.router);
       app.use(`${apiPrefixUrl}/articles`, ArticleRoute.router);
       app.use(function(req, res, next){
-        res.status(404);
-        res.type('txt').send('Not found');
+        res.status(404).send('Not found');
       });
       app.get('/', (req, res) => {
         res.send('api server is running ...');

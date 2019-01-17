@@ -7,13 +7,11 @@ import {connect} from 'react-redux';
 const mapDispatchToPropsSigninForm = (dispatch) => {
   return {
     onSubmit: async ({email, password}) => {
-      console.log(`!!!onSUbmit email ${JSON.stringify({email, password})}`);
       const userResponse = await fetch('http://localhost:5000/api/v1/auth',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        mode: 'no-cors',
         body: JSON.stringify({email, password}),
       });
       dispatch(changeSignin(userResponse.text()));
