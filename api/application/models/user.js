@@ -7,7 +7,7 @@ class UserModel extends Model {
   }
 
   findOneByEmail(email) {
-    return this._model.findOne({email: email}, {password, roles});
+    return this._model.findOne({email: email});
   }
 }
 

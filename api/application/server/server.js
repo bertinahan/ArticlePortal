@@ -2,7 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import {ArticleRoute, AuthRoute, PublicRoute} from '../routes/routes';
-import {RouteUtils} from '../utilities/utils';
 
 class Server {
   constructor() {
@@ -24,6 +23,11 @@ class Server {
       app.set('etag', false);
       middlewares.forEach((middleware) => {
         app.use(middleware);
+      });
+      app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
       });
       app.use(`${apiPrefixUrl}`, PublicRoute.router);
       app.use(`${apiPrefixUrl}/auth`, AuthRoute.router);

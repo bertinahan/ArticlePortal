@@ -13,7 +13,7 @@ class AuthController extends Controller {
     return async (req, res) => {
       const {email, password} = req.body;
       const user = await userModel.findOneByEmail(email);
-      if (user.password === password) {
+      if (user && user.password === password) {
         const authentication = jwt.sign({
           email: email,
           roles: user.roles,
