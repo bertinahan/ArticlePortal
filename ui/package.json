@@ -23,7 +23,7 @@
     "redux-form": "^8.1.0",
     "redux-promise-middleware": "^5.1.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.83.0"
+    "semantic-ui-react": "^0.84.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",

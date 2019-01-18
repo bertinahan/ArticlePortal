@@ -3,11 +3,12 @@ import SiginPage from './SigninPage';
 import SigninReducer from './SigninReducer';
 import {changeSignin} from './SigninAction';
 import {connect} from 'react-redux';
+import {RouteUtils} from '../utilities/utilites';
 
 const mapDispatchToPropsSigninForm = (dispatch) => {
   return {
     onSubmit: async ({email, password}) => {
-      const userResponse = await fetch('http://localhost:5000/api/v1/auth',{
+      const userResponse = await fetch(`${RouteUtils.apiPath}/auth`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

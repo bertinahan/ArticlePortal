@@ -2,19 +2,36 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Form} from 'semantic-ui-react';
 
+const renderTextField = ({
+  input,
+  label,
+  meta: { touched, error },
+  ...custom
+}) => (
+  <Form.Field
+    error={touched && error}
+  >
+      <label>{label}</label>
+      <input {...custom} />
+  </Form.Field>
+)
+
 const SigninForm = ({handleSubmit, onSubmit}) => {
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="email">Email</label>
-        <Field name="email" component="input" type="email" />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <Field name="password" component="input" type="password" />
-      </div>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Field
+        name="email"
+        component={renderTextField}
+        label="Email"
+      />
+      <Field
+        name="password"
+        component={renderTextField}
+        label="Password"
+        type="password"
+      />
       <button type="submit">Submit</button>
-    </form>
+    </Form>
   )
 }
 
