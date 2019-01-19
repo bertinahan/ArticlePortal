@@ -1,9 +1,10 @@
 import SigninForm from './SigninForm';
-import SiginPage from './SigninPage';
+import SiginApp from './SigninApp';
 import SigninReducer from './SigninReducer';
 import {changeSignin} from './SigninAction';
 import {connect} from 'react-redux';
 import {RouteUtils} from '../utilities/utilites';
+import SigninApp from './SigninApp';
 
 const mapDispatchToPropsSigninForm = (dispatch) => {
   return {
@@ -26,9 +27,10 @@ const mapDispatchToPropsSigninForm = (dispatch) => {
 const SigninFormContainer = connect(
   null,
   mapDispatchToPropsSigninForm,
-  )(SigninForm);
+  )(SigninApp);
+
 export {
-  SiginPage,
+  SiginApp,
   SigninForm,
   SigninReducer,
   SigninFormContainer,
